@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FlashlightManager</string>
+    <string name="still_on">Constant</string>
+    <string name="flick">Flicker</string>
+</resources>
