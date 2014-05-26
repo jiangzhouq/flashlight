@@ -122,9 +122,11 @@ public class FlashLightActivity extends Activity implements OnClickListener{
         recoverState();
         switch(state){
             case mState_constant:
+                startFlash(false);
                 mButton_constant.setBackgroundResource(R.drawable.mode_button_left_pressed);
                 break;
             case mState_flicker:
+                startFlash(true);
                 mButton_flicker.setBackgroundResource(R.drawable.mode_button_middle_pressed);
                 break;
             case mState_rhythm:
@@ -152,6 +154,7 @@ public class FlashLightActivity extends Activity implements OnClickListener{
                 break;
         }
         mState = mState_off;
+        stopFlash();
     }
 	private void recoverState(){
         switch(mState){
@@ -169,6 +172,7 @@ public class FlashLightActivity extends Activity implements OnClickListener{
                 break;
         }
         mState = mState_off;
+        stopFlash();
     }
 	@Override
 	protected void onDestroy() {
