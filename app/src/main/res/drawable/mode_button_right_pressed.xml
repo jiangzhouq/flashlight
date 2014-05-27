@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true">
-        <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="#01425c"></solid>
-            <stroke android:width="1dp" android:color="#01425c"></stroke>
-            <corners android:bottomRightRadius="10dp"
-                android:topRightRadius="10dp"></corners>
-        </shape>
-    </item>
-    <item android:state_focused="true">
-        <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="#01425c"></solid>
-            <stroke android:width="1dp" android:color="#01425c"></stroke>
-            <corners android:bottomRightRadius="10dp"
-                android:topRightRadius="10dp"></corners>
-        </shape>
-    </item>
-    <item>
-        <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="#045b78"></solid>
-            <stroke android:width="1dp" android:color="#01425c"></stroke>
-            <corners android:bottomRightRadius="10dp"
-                android:topRightRadius="10dp"></corners>
-        </shape>
-    </item>
+    <item android:state_pressed="true" android:drawable="@drawable/bg_button_right_pressing"/>
+    <item android:state_focused="true"  android:drawable="@drawable/bg_button_right_pressing"/>
+    <item  android:drawable="@drawable/bg_button_right_pressed"/>
 </selector>

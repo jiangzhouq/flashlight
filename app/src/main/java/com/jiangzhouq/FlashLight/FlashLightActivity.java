@@ -50,19 +50,46 @@ public class FlashLightActivity extends Activity implements OnClickListener{
         mButton_slow.setOnClickListener(this);
 
 	}
-	Runnable run = new Runnable() {
+    class FlickerRun implements Runnable{
+        private int defaultRate = 500;
+        @Override
+        public void run() {
+            mSurface.setFlashlightSwitch(!mSurface.isFlashLightOn());
+            mHandler.postDelayed(flickerRun, defaultRate);
+        }
+        public void setRate(int rate){
+            switch(rate){
+                case 1:
+                    defaultRate = 100;
+                    break;
+                case 2:
+                    defaultRate = 250;
+                    break;
+                case 3:
+                    defaultRate = 500;
+                    break;
+                case 4:
+                    defaultRate = 750;
+                    break;
+                case 5:
+                    defaultRate = 1000;
+                    break;
+            }
+        }
+    };
+	Runnable flickerRun = new Runnable() {
 		@Override
 		public void run() {
 			mSurface.setFlashlightSwitch(!mSurface.isFlashLightOn());
-			mHandler.postDelayed(run, 500);
+			mHandler.postDelayed(flickerRun, 500);
 		}
 	};
 	private void startFlash(boolean flick){
 		if(flick){
-			mHandler.post(run);
+			mHandler.post(flickerRun);
 //			mImageButton.setImageResource(R.drawable.switch_on);
 		}else{
-			mHandler.removeCallbacks(run);
+			mHandler.removeCallbacks(flickerRun);
 			if(!mSurface.isFlashLightOn()){
 				mSurface.setFlashlightSwitch(true);
 //				mImageButton.setImageResource(R.drawable.switch_on);
@@ -71,7 +98,7 @@ public class FlashLightActivity extends Activity implements OnClickListener{
 	}
 	
 	private void stopFlash(){
-		mHandler.removeCallbacks(run);
+		mHandler.removeCallbacks(flickerRun);
 		if(mSurface.isFlashLightOn()){
 			mSurface.setFlashlightSwitch(false);
 		}
