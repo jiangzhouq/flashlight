@@ -26,12 +26,12 @@ public class RotateButton extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Paint p = new Paint();
-        p.setColor(Color.argb(255,242,242,242));
+        p.setColor(Color.argb(255,140,143,145));
         canvas.drawCircle(getWidth()/2,getHeight()/2,getWidth()/2,p);
-        p.setColor(Color.argb(255,255,254,238));
-        canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() / 2 - 20, p);
-        p.setColor(Color.argb(255,170,0,4));
-        canvas.drawCircle((float)getCurPoint(getGrade())[0], (float)getCurPoint(getGrade())[1], 5,p);
+        p.setColor(Color.argb(255,66,74,82));
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() *2/ 5, p);
+        p.setColor(Color.argb(255,36,41,46));
+        canvas.drawCircle((float)getCurPoint(getGrade())[0], (float)getCurPoint(getGrade())[1], getWidth()/40,p);
     }
     public double[] getCurPoint(int i){
         double angleSin = Math.sin(30*Math.PI/180);
@@ -40,25 +40,25 @@ public class RotateButton extends View {
         double[] point = new double[2];
         switch(i){
             case 2:
-                point[0] = getWidth()/2 - angleCos * (getWidth()/2 - 10);
-                point[1] = getWidth()/2 + angleSin * (getWidth()/2 - 10);
+                point[0] = getWidth()/2 - angleCos * (getWidth()*7/16);
+                point[1] = getWidth()/2 + angleSin * (getWidth()*7/16);
                 break;
             case 3:
                 point[0] = getWidth()/2;
-                point[1] = 10;
+                point[1] = getWidth()/16;
                 break;
             case 4:
-                point[0] = getWidth()/2 + angleCos * (getWidth()/2 - 10);
-                point[1] = getWidth()/2 - angleSin * (getWidth()/2 - 10);
+                point[0] = getWidth()/2 + angleCos * (getWidth()*7/16);
+                point[1] = getWidth()/2 - angleSin * (getWidth()*7/16);
                 break;
             case 5:
-                point[0] = getWidth()/2 + angleCos * (getWidth()/2 - 10);
-                point[1] = getWidth()/2 + angleSin * (getWidth()/2 - 10);
+                point[0] = getWidth()/2 + angleCos * (getWidth()*7/16);
+                point[1] = getWidth()/2 + angleSin * (getWidth()*7/16);
                 break;
             //case 1
             default:
-                point[0] = getWidth()/2 - angleCos * (getWidth()/2 - 10);
-                point[1] = getWidth()/2 - angleSin * (getWidth()/2 - 10);
+                point[0] = getWidth()/2 - angleCos * (getWidth()*7/16);
+                point[1] = getWidth()/2 - angleSin * (getWidth()*7/16 );
                 break;
         }
         return point;

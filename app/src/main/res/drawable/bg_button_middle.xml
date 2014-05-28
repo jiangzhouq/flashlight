@@ -3,7 +3,7 @@
     <!-- Bottom 2dp Shadow -->
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="#01425c"></solid>
+            <solid android:color="#24292e"></solid>
         </shape>
     </item>
     <!-- White Top color -->
@@ -11,7 +11,7 @@
         android:top="1px"
         android:left="1px">
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="#0781aa"></solid>
+            <solid android:color="#8c8f91"></solid>
         </shape>
     </item>
 </layer-list>
