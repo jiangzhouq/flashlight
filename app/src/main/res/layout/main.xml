@@ -1,67 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>   
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
-    <RelativeLayout
-        android:id="@+id/main_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        >
-        <RelativeLayout 
-            android:id="@+id/back_ground"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#00597c">
-            <ImageButton 
-                android:id="@+id/switch_button"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@drawable/switch_off"
-                android:background="@android:color/transparent"
-                android:layout_centerInParent="true"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_below="@+id/switch_button"
-                android:orientation="horizontal"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp">
-                <ImageButton
-                    android:id="@+id/constant"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="50dp"
-                    android:background="@drawable/mode_button_left"
-                />
-                <ImageButton
-                    android:id="@+id/flicker"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="50dp"
-                    android:background="@drawable/mode_button_middle"
-                    />
-                <ImageButton
-                    android:id="@+id/rhythm"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="50dp"
-                    android:background="@drawable/mode_button_middle"
-                    />
-                <ImageButton
-                    android:id="@+id/slow"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="50dp"
-                    android:background="@drawable/mode_button_right"
-                    />
-            </LinearLayout>
-
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-</LinearLayout>
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00597c">
+    <TextView
+        android:id="@+id/text"
+        android:layout_above="@+id/buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_centerVertical="true">
+        <ImageButton
+            android:id="@+id/constant"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/mode_button_left" />
+        <ImageButton
+            android:id="@+id/flicker"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/mode_button_middle" />
+        <ImageButton
+            android:id="@+id/rhythm"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/mode_button_middle" />
+        <ImageButton
+            android:id="@+id/slow"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/mode_button_right" />
+    </LinearLayout>
+    <com.jiangzhouq.FlashLight.RotateButton
+        android:id="@+id/rotate"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/buttons"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
+</RelativeLayout>
+</RelativeLayout>

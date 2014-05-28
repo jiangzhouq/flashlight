@@ -3,6 +3,7 @@ package com.jiangzhouq.FlashLight;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
@@ -10,10 +11,12 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
+import android.widget.TextView;
+
 import com.tclmid.app.FlshLight.R;
 
 
-public class FlashLightActivity extends Activity implements OnClickListener{
+public class FlashLightActivity extends Activity implements OnClickListener, View.OnTouchListener{
 	private FlashLightSurface mSurface;
     //Buttons
     private ImageButton mButton_constant;
@@ -28,7 +31,9 @@ public class FlashLightActivity extends Activity implements OnClickListener{
     private final int mState_slow = 4;
     private int mState = mState_off;
 
+    private RotateButton mRotate;
 	private boolean isFlashOn = false;
+    private TextView mText;
 	Handler mHandler = new  Handler(){
 	};
 	/** Called when the activity is first created. */
@@ -48,7 +53,9 @@ public class FlashLightActivity extends Activity implements OnClickListener{
         mButton_rhythm.setOnClickListener(this);
         mButton_slow = (ImageButton) findViewById(R.id.slow);
         mButton_slow.setOnClickListener(this);
-
+        mRotate = (RotateButton) findViewById(R.id.rotate);
+        mRotate.setOnTouchListener(this);
+        mText = (TextView) findViewById(R.id.text);
 	}
     class FlickerRun implements Runnable{
         private int defaultRate = 500;
@@ -60,29 +67,24 @@ public class FlashLightActivity extends Activity implements OnClickListener{
         public void setRate(int rate){
             switch(rate){
                 case 1:
-                    defaultRate = 100;
+                    defaultRate = 1000;
                     break;
                 case 2:
-                    defaultRate = 250;
+                    defaultRate = 700;
                     break;
                 case 3:
                     defaultRate = 500;
                     break;
                 case 4:
-                    defaultRate = 750;
+                    defaultRate = 200;
                     break;
                 case 5:
-                    defaultRate = 1000;
+                    defaultRate = 50;
                     break;
             }
         }
     };
-	Runnable flickerRun = new Runnable() {
-		@Override
-		public void run() {
-			mSurface.setFlashlightSwitch(!mSurface.isFlashLightOn());
-			mHandler.postDelayed(flickerRun, 500);
-		}
+    FlickerRun flickerRun = new FlickerRun() {
 	};
 	private void startFlash(boolean flick){
 		if(flick){
@@ -145,6 +147,33 @@ public class FlashLightActivity extends Activity implements OnClickListener{
 //			}
 		}
 	}
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        switch(view.getId()){
+            case R.id.rotate:
+                mRotate.currentX = motionEvent.getX();
+                mRotate.currentY = motionEvent.getY();
+                mRotate.invalidate();
+                mText.setText("" + mRotate.getAngle());
+                adjustLightFlicker(mRotate.getAngle());
+                break;
+        }
+        return true;
+    }
+    private void adjustLightFlicker(double light){
+        if(light >= 0 && light < 90){
+            flickerRun.setRate(5);
+        }else if( light >= 90 && light < 150){
+            flickerRun.setRate(4);
+        }else if(light >= 150 || light < -150){
+            flickerRun.setRate(3);
+        }else if ( light >= -150 && light > -90){
+            flickerRun.setRate(2);
+        }else if(light > -90 && light < 0){
+            flickerRun.setRate(1);
+        }
+    }
     private void changeState(int state){
         recoverState();
         switch(state){
