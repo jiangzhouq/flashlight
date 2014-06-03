@@ -14,7 +14,7 @@
         android:top="1px"
         android:left="1px">
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="#8c8f91"></solid>
+            <solid android:color="#ff4444"></solid>
             <corners
                 android:bottomLeftRadius="10dp"
                 android:topLeftRadius="10dp"></corners>

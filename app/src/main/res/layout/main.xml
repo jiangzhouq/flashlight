@@ -7,7 +7,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#212121">
+    android:background="@drawable/bg_layout">
     <TextView
         android:id="@+id/text"
         android:layout_above="@+id/buttons"
