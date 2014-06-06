@@ -13,8 +13,15 @@ import android.view.View;
  * Created by MyPC on 2014/5/27.
  */
 public class RotateButton extends View {
+    public final static int TOTAL_ANGLE_180 = 0;
+    public final static int TOTAL_ANGLE_240 = 1;
+    public final static int TOTAL_ANGLE_300 = 2;
+    private int mTotalAngle = 180;
+    private int mGradeCount = 5;
     public float currentX = 40;
     public float currentY = 40;
+    private int oldGrade = 0;
+    private int newGrade;
     public RotateButton(Context context) {
         super(context);
     }
@@ -22,16 +29,39 @@ public class RotateButton extends View {
         super(context, attrs);
     }
 
+    public void setTotalAngle(int q){
+        switch(q){
+            case 0:
+                mTotalAngle = 180;
+                break;
+            case 1:
+                mTotalAngle = 240;
+                break;
+            case 2:
+                mTotalAngle = 300;
+                break;
+            default:
+                mTotalAngle = 180;
+                break;
+        }
+    }
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Paint p = new Paint();
         p.setColor(Color.argb(255,140,143,145));
         canvas.drawCircle(getWidth()/2,getHeight()/2,getWidth()/2,p);
-        p.setColor(Color.argb(255,66,74,82));
+        p.setColor(Color.argb(255,28,30,32));
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() *2/ 5, p);
         p.setColor(Color.argb(255,36,41,46));
-        canvas.drawCircle((float)getCurPoint(getGrade())[0], (float)getCurPoint(getGrade())[1], getWidth()/40,p);
+        newGrade = getGrade();
+        if(newGrade == oldGrade){
+            canvas.drawCircle((float)getCurPoint(newGrade)[0], (float)getCurPoint(newGrade)[1], getWidth()/40,p);
+        }else{
+
+            oldGrade = newGrade;
+        }
+
     }
     public double[] getCurPoint(int i){
         double angleSin = Math.sin(30*Math.PI/180);
@@ -64,6 +94,7 @@ public class RotateButton extends View {
         return point;
     }
     public int getGrade(){
+        int mPerAngle = 300/(mGradeCount - 1);
         double a = Math.atan2(currentX -getWidth()/2, currentY - getHeight()/2);
         double angle = 180*a /Math.PI;
         if(angle >= 0 && angle < 90){

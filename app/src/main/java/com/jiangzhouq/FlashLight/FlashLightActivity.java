@@ -54,6 +54,7 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
         mButton_slow = (ImageButton) findViewById(R.id.slow);
         mButton_slow.setOnClickListener(this);
         mRotate = (RotateButton) findViewById(R.id.rotate);
+        mRotate.setTotalAngle(RotateButton.TOTAL_ANGLE_300);
         mRotate.setOnTouchListener(this);
         mText = (TextView) findViewById(R.id.text);
 	}
