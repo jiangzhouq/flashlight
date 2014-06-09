@@ -33,7 +33,6 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
 
     private RotateButton mRotate;
 	private boolean isFlashOn = false;
-    private TextView mText;
 	Handler mHandler = new  Handler(){
 	};
 	/** Called when the activity is first created. */
@@ -55,7 +54,6 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
         mButton_slow.setOnClickListener(this);
         mRotate = (RotateButton) findViewById(R.id.rotate);
         mRotate.setOnTouchListener(this);
-        mText = (TextView) findViewById(R.id.text);
 	}
     class FlickerRun implements Runnable{
         private int defaultRate = 500;
@@ -155,7 +153,6 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
                 mRotate.currentX = motionEvent.getX();
                 mRotate.currentY = motionEvent.getY();
                 mRotate.invalidate();
-                mText.setText("" + mRotate.getAngle());
                 adjustLightFlicker(mRotate.getAngle());
                 break;
         }

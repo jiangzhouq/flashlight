@@ -56,7 +56,7 @@ public class RotateButton extends View {
         canvas.drawLine((float)(getWidth()/2),
                 (float)(getWidth()/10),
                 (float)(getWidth()/2),
-                (float)(getWidth()*7/50),
+                (float)(getWidth()*9/50),
                 p
         );
         canvas.drawLine((float)(getWidth()/2 + angleCos * (getWidth()*2/5)),
@@ -71,6 +71,12 @@ public class RotateButton extends View {
                 (float)(getWidth()/2 + angleSin * (getWidth()*9/25)),
                 p
         );
+        //Draw text
+        p.setTextSize((float)24);
+        canvas.drawText("1",(float)(getWidth()/2 - angleCos * (getWidth()*9/25)),(float)(getWidth()/2 - angleSin * (getWidth()*9/25)),p);
+        canvas.drawText("2",(float)(getWidth()/2 - angleCos * (getWidth()*9/25)),(float)(getWidth()/2 + angleSin * (getWidth()*9/25)),p);
+        canvas.drawText("4",(float)(getWidth()/2 + angleCos * (getWidth()*8/25)),(float)(getWidth()/2 - angleSin * (getWidth()*9/25)),p);
+        canvas.drawText("5",(float)(getWidth()/2 + angleCos * (getWidth()*8/25)),(float)(getWidth()/2 + angleSin * (getWidth()*9/25)),p);
     }
     public double[] getCurPoint(int i){
 
