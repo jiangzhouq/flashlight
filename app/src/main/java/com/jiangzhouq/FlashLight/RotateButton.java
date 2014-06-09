@@ -15,6 +15,9 @@ import android.view.View;
 public class RotateButton extends View {
     public float currentX = 40;
     public float currentY = 40;
+    double angleSin = Math.sin(30*Math.PI/180);
+    double angleCos = Math.cos(30*Math.PI/180);
+
     public RotateButton(Context context) {
         super(context);
     }
@@ -26,16 +29,51 @@ public class RotateButton extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Paint p = new Paint();
+        //Draw outside circle
         p.setColor(Color.argb(255,140,143,145));
         canvas.drawCircle(getWidth()/2,getHeight()/2,getWidth()/2,p);
-        p.setColor(Color.argb(255,66,74,82));
+        //Draw inside circle
+        p.setColor(Color.argb(255,28,30,32));
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() *2/ 5, p);
+        //Draw a small ball point
         p.setColor(Color.argb(255,36,41,46));
         canvas.drawCircle((float)getCurPoint(getGrade())[0], (float)getCurPoint(getGrade())[1], getWidth()/40,p);
+        //Draw grades
+        p.setColor(Color.argb(255,140,143,145));
+        p.setStrokeWidth((float)3);
+        canvas.drawLine((float)(getWidth()/2 - angleCos * (getWidth()*2/5)),
+                (float)(getWidth()/2 - angleSin * (getWidth()*2/5 )),
+                (float)(getWidth()/2 - angleCos * (getWidth()*9/25)),
+                (float)(getWidth()/2 - angleSin * (getWidth()*9/25)),
+                p
+                );
+        canvas.drawLine((float)(getWidth()/2 - angleCos * (getWidth()*2/5)),
+                (float)(getWidth()/2 + angleSin * (getWidth()*2/5 )),
+                (float)(getWidth()/2 - angleCos * (getWidth()*9/25)),
+                (float)(getWidth()/2 + angleSin * (getWidth()*9/25)),
+                p
+        );
+        canvas.drawLine((float)(getWidth()/2),
+                (float)(getWidth()/10),
+                (float)(getWidth()/2),
+                (float)(getWidth()*7/50),
+                p
+        );
+        canvas.drawLine((float)(getWidth()/2 + angleCos * (getWidth()*2/5)),
+                (float)(getWidth()/2 - angleSin * (getWidth()*2/5 )),
+                (float)(getWidth()/2 + angleCos * (getWidth()*9/25)),
+                (float)(getWidth()/2 - angleSin * (getWidth()*9/25)),
+                p
+        );
+        canvas.drawLine((float)(getWidth()/2 + angleCos * (getWidth()*2/5)),
+                (float)(getWidth()/2 + angleSin * (getWidth()*2/5 )),
+                (float)(getWidth()/2 + angleCos * (getWidth()*9/25)),
+                (float)(getWidth()/2 + angleSin * (getWidth()*9/25)),
+                p
+        );
     }
     public double[] getCurPoint(int i){
-        double angleSin = Math.sin(30*Math.PI/180);
-        double angleCos = Math.cos(30*Math.PI/180);
+
         Log.d("qiqi","angleSin:"+ angleSin + " grade:" + i + " currentX:" + currentX + " currentY:" + currentY);
         double[] point = new double[2];
         switch(i){
