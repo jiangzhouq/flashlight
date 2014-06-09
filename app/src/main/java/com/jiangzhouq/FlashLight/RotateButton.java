@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -21,6 +23,7 @@ public class RotateButton extends View {
     public float currentX = 40;
     public float currentY = 40;
     private int oldGrade = 0;
+    private boolean forRunOnce = true;
     private int newGrade;
     public RotateButton(Context context) {
         super(context);
@@ -45,6 +48,26 @@ public class RotateButton extends View {
                 break;
         }
     }
+    Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        }
+    };
+    Runnable drawRun = new Runnable() {
+        @Override
+        public void run() {
+            for(int i = 0 ; i < 10 ; i ++){
+                invalidate();
+                Log.d("qiqi", " invalidate:" + i);
+                if(i == 9 ){
+                    oldGrade = newGrade;
+                    forRunOnce = true;
+                }
+            }
+            mHandler.postDelayed(drawRun,1000);
+        }
+    };
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -58,15 +81,19 @@ public class RotateButton extends View {
         if(newGrade == oldGrade){
             canvas.drawCircle((float)getCurPoint(newGrade)[0], (float)getCurPoint(newGrade)[1], getWidth()/40,p);
         }else{
-
-            oldGrade = newGrade;
+            float x = (float)getCurPoint(newGrade)[0] + ((float)getCurPoint(newGrade)[0] - (float)getCurPoint(oldGrade)[0])/10;
+            float y = (float)getCurPoint(newGrade)[1] + ((float)getCurPoint(newGrade)[1] - (float)getCurPoint(oldGrade)[1])/10;
+            Log.d("qiqi", " draw x:" + x + " y:" + y);
+            canvas.drawCircle(x, y, getWidth() / 40, p);
+            if(forRunOnce) {
+                mHandler.post(drawRun);
+                forRunOnce = false;
+            }
         }
-
     }
     public double[] getCurPoint(int i){
         double angleSin = Math.sin(30*Math.PI/180);
         double angleCos = Math.cos(30*Math.PI/180);
-        Log.d("qiqi","angleSin:"+ angleSin + " grade:" + i + " currentX:" + currentX + " currentY:" + currentY);
         double[] point = new double[2];
         switch(i){
             case 2:
