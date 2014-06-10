@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.tclmid.app.FlshLight.R;
+
+import java.util.zip.Inflater;
 
 
 public class FlashLightActivity extends Activity implements OnClickListener, View.OnTouchListener{
@@ -173,6 +176,7 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
     }
     private void changeState(int state){
         recoverState();
+        FrameLayout frame = (FrameLayout)findViewById(R.id.container);
         switch(state){
             case mState_constant:
                 startFlash(false);
@@ -181,9 +185,13 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
             case mState_flicker:
                 startFlash(true);
                 mButton_flicker.setBackgroundResource(R.drawable.mode_button_middle_pressed);
+                frame.removeAllViews();
+                frame.addView(View.inflate(this,R.layout.flicker_and_slow_button,null));
                 break;
             case mState_rhythm:
                 mButton_rhythm.setBackgroundResource(R.drawable.mode_button_middle_pressed);
+                frame.removeAllViews();
+                frame.addView(View.inflate(this,R.layout.rhythm_table,null));
                 break;
             case mState_slow:
                 mButton_slow.setBackgroundResource(R.drawable.mode_button_right_pressed);
