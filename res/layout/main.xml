@@ -41,18 +41,18 @@
             android:layout_weight="1"
             android:background="@drawable/mode_button_right" />
     </LinearLayout>
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/container"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="50dp"
-        android:layout_below="@+id/buttons">
+        android:layout_below="@+id/buttons"
+        android:layout_centerHorizontal="true">
         <com.jiangzhouq.FlashLight.RotateButton
             android:id="@+id/rotate"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             />
-    </FrameLayout>
+    </RelativeLayout>
 </RelativeLayout>
 </RelativeLayout>

@@ -6,17 +6,10 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
-import android.widget.TextView;
 
 import com.tclmid.app.FlshLight.R;
-
-import java.util.zip.Inflater;
 
 
 public class FlashLightActivity extends Activity implements OnClickListener, View.OnTouchListener{
@@ -55,8 +48,6 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
         mButton_rhythm.setOnClickListener(this);
         mButton_slow = (ImageButton) findViewById(R.id.slow);
         mButton_slow.setOnClickListener(this);
-        mRotate = (RotateButton) findViewById(R.id.rotate);
-        mRotate.setOnTouchListener(this);
 	}
     class FlickerRun implements Runnable{
         private int defaultRate = 500;
@@ -176,7 +167,7 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
     }
     private void changeState(int state){
         recoverState();
-        FrameLayout frame = (FrameLayout)findViewById(R.id.container);
+        RelativeLayout frame = (RelativeLayout)findViewById(R.id.container);
         switch(state){
             case mState_constant:
                 startFlash(false);
@@ -187,6 +178,8 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
                 mButton_flicker.setBackgroundResource(R.drawable.mode_button_middle_pressed);
                 frame.removeAllViews();
                 frame.addView(View.inflate(this,R.layout.flicker_and_slow_button,null));
+                mRotate = (RotateButton) findViewById(R.id.rotate);
+                mRotate.setOnTouchListener(this);
                 break;
             case mState_rhythm:
                 mButton_rhythm.setBackgroundResource(R.drawable.mode_button_middle_pressed);
