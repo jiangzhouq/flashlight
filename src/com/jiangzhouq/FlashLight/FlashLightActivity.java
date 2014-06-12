@@ -167,27 +167,35 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
     }
     private void changeState(int state){
         recoverState();
-        RelativeLayout frame = (RelativeLayout)findViewById(R.id.container);
+        RelativeLayout relative = (RelativeLayout)findViewById(R.id.container);
         switch(state){
             case mState_constant:
                 startFlash(false);
                 mButton_constant.setBackgroundResource(R.drawable.mode_button_left_pressed);
+                
+                relative.removeAllViews();
+                relative.addView(View.inflate(this,R.layout.constant_detail,null));
                 break;
             case mState_flicker:
                 startFlash(true);
                 mButton_flicker.setBackgroundResource(R.drawable.mode_button_middle_pressed);
-                frame.removeAllViews();
-                frame.addView(View.inflate(this,R.layout.flicker_and_slow_button,null));
+                
+                relative.removeAllViews();
+                relative.addView(View.inflate(this,R.layout.flicker_and_slow_button,null));
                 mRotate = (RotateButton) findViewById(R.id.rotate);
                 mRotate.setOnTouchListener(this);
                 break;
             case mState_rhythm:
                 mButton_rhythm.setBackgroundResource(R.drawable.mode_button_middle_pressed);
-                frame.removeAllViews();
-                frame.addView(View.inflate(this,R.layout.rhythm_table,null));
+                relative.removeAllViews();
+                relative.addView(View.inflate(this,R.layout.rhythm_table,null));
                 break;
             case mState_slow:
                 mButton_slow.setBackgroundResource(R.drawable.mode_button_right_pressed);
+                relative.removeAllViews();
+                relative.addView(View.inflate(this,R.layout.flicker_and_slow_button,null));
+                mRotate = (RotateButton) findViewById(R.id.rotate);
+                mRotate.setOnTouchListener(this);
                 break;
         }
         mState = state;
