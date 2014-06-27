@@ -4,4 +4,6 @@
     <string name="app_name">FlashlightManager</string>
     <string name="still_on">Constant</string>
     <string name="flick">Flicker</string>
+    <string name="version">Version:</string>
+    <string name="v_num">v1.0</string>
 </resources>

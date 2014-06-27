@@ -3,4 +3,6 @@
     <string name="app_name">灯光师</string>
     <string name="still_on">常亮</string>
     <string name="flick">闪烁</string>
+    <string name="version">版本:</string>
+    <string name="v_num">v1.0</string>
 </resources>

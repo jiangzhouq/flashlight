@@ -178,26 +178,26 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
                 startFlash(false);
                 mButton_constant.setBackgroundResource(R.drawable.mode_button_left_pressed);
                 bottom_relative.removeAllViews();
-                bottom_relative.addView(View.inflate(this,R.layout.constant_detail,null));
+                View.inflate(this,R.layout.constant_detail,bottom_relative);
                 top_image.setImageResource(R.drawable.top_bg_2);
                 break;
             case mState_flicker:
                 startFlash(true);
                 mButton_flicker.setBackgroundResource(R.drawable.mode_button_middle_pressed);
                 bottom_relative.removeAllViews();
-                bottom_relative.addView(View.inflate(this,R.layout.flicker_table,null));
+                View.inflate(this,R.layout.flicker_table,bottom_relative);
                 top_image.setImageResource(R.drawable.top_bg_3);
                 break;
             case mState_rhythm:
                 mButton_rhythm.setBackgroundResource(R.drawable.mode_button_middle_pressed);
                 bottom_relative.removeAllViews();
-                bottom_relative.addView(View.inflate(this,R.layout.rhythm_table,null));
+                View.inflate(this,R.layout.rhythm_table,bottom_relative);
                 top_image.setImageResource(R.drawable.top_bg_4);
                 break;
             case mState_slow:
                 mButton_slow.setBackgroundResource(R.drawable.mode_button_right_pressed);
                 bottom_relative.removeAllViews();
-                bottom_relative.addView(View.inflate(this,R.layout.flicker_table,null));
+                View.inflate(this,R.layout.flicker_table,bottom_relative);
                 top_image.setImageResource(R.drawable.top_bg_5);
                 break;
         }
@@ -205,7 +205,7 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
     }
     private void recoverState(int nowState){
     	bottom_relative.removeAllViews();
-    	bottom_relative.addView(View.inflate(this,R.layout.constant_detail,null));
+    	View.inflate(this,R.layout.constant_detail,bottom_relative);
         top_image.setImageResource(R.drawable.top_bg_1);
         switch(nowState){
             case mState_constant:
