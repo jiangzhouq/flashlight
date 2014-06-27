@@ -30,16 +30,16 @@ public class RotateButton extends View {
         super.onDraw(canvas);
         Paint p = new Paint();
         //Draw outside circle
-        p.setColor(Color.argb(255,140,143,145));
+        p.setColor(Color.argb(255,255,255,240));
         canvas.drawCircle(getWidth()/2,getHeight()/2,getWidth()/2,p);
         //Draw inside circle
-        p.setColor(Color.argb(255,28,30,32));
+        p.setColor(Color.argb(255,255,255,255));
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() *2/ 5, p);
         //Draw a small ball point
-        p.setColor(Color.argb(255,36,41,46));
+        p.setColor(Color.argb(255,140,143,145));
         canvas.drawCircle((float)getCurPoint(getGrade())[0], (float)getCurPoint(getGrade())[1], getWidth()/40,p);
         //Draw grades
-        p.setColor(Color.argb(255,140,143,145));
+        p.setColor(Color.argb(255,255,255,240));
         p.setStrokeWidth((float)3);
         canvas.drawLine((float)(getWidth()/2 - angleCos * (getWidth()*2/5)),
                 (float)(getWidth()/2 - angleSin * (getWidth()*2/5 )),

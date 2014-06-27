@@ -58,22 +58,4 @@
             android:layout_height="50dp"
             android:background="@drawable/mode_button_rhythm" />
     </TableRow>
-    <TableRow>
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/mode_button_rhythm" />
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/mode_button_rhythm" />
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/mode_button_rhythm" />
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/mode_button_rhythm" />
-    </TableRow>
 </TableLayout>

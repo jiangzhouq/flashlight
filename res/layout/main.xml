@@ -3,11 +3,20 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black">
+    android:background="#FFFFF0">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_layout">
+    <ImageView 
+        android:id="@+id/top_image"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:scaleType="centerInside"
+        android:layout_above="@+id/buttons"
+        android:src="@drawable/top_bg_1"
+        android:layout_marginBottom="40dp"
+        android:layout_centerHorizontal="true"/>
     <LinearLayout
         android:id="@+id/buttons"
         android:layout_width="match_parent"
@@ -21,38 +30,50 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
+            android:src="@drawable/bt_bg_1"
+            android:scaleType="centerInside"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:background="@drawable/mode_button_left" />
         <ImageButton
             android:id="@+id/flicker"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
+            android:src="@drawable/bt_bg_3"
+            android:scaleType="centerInside"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:background="@drawable/mode_button_middle" />
         <ImageButton
             android:id="@+id/rhythm"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
+            android:src="@drawable/bt_bg_5"
+            android:scaleType="centerInside"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:background="@drawable/mode_button_middle" />
         <ImageButton
             android:id="@+id/slow"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
+            android:src="@drawable/bt_bg_7"
+            android:scaleType="centerInside"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:background="@drawable/mode_button_right" />
     </LinearLayout>
     <RelativeLayout
         android:id="@+id/container"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="50dp"
         android:layout_below="@+id/buttons"
-        android:layout_centerHorizontal="true">
-        <com.jiangzhouq.FlashLight.RotateButton
-            android:id="@+id/rotate"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+        android:layout_centerHorizontal="true"
+        android:gravity="center">
+        <include layout="@layout/constant_detail"/>
     </RelativeLayout>
 </RelativeLayout>
 </RelativeLayout>

@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.tclmid.app.FlshLight.R;
@@ -29,6 +30,8 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
 
     private RotateButton mRotate;
 	private boolean isFlashOn = false;
+	private RelativeLayout bottom_relative;
+	private ImageView top_image;
 	Handler mHandler = new  Handler(){
 	};
 	/** Called when the activity is first created. */
@@ -48,6 +51,8 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
         mButton_rhythm.setOnClickListener(this);
         mButton_slow = (ImageButton) findViewById(R.id.slow);
         mButton_slow.setOnClickListener(this);
+        bottom_relative = (RelativeLayout)findViewById(R.id.container);
+        top_image = (ImageView)findViewById(R.id.top_image);
 	}
     class FlickerRun implements Runnable{
         private int defaultRate = 500;
@@ -167,40 +172,41 @@ public class FlashLightActivity extends Activity implements OnClickListener, Vie
     }
     private void changeState(int state){
         recoverState();
-        RelativeLayout relative = (RelativeLayout)findViewById(R.id.container);
+        
         switch(state){
             case mState_constant:
                 startFlash(false);
                 mButton_constant.setBackgroundResource(R.drawable.mode_button_left_pressed);
-                
-                relative.removeAllViews();
-                relative.addView(View.inflate(this,R.layout.constant_detail,null));
+                bottom_relative.removeAllViews();
+                bottom_relative.addView(View.inflate(this,R.layout.constant_detail,null));
+                top_image.setImageResource(R.drawable.top_bg_2);
                 break;
             case mState_flicker:
                 startFlash(true);
                 mButton_flicker.setBackgroundResource(R.drawable.mode_button_middle_pressed);
-                
-                relative.removeAllViews();
-                relative.addView(View.inflate(this,R.layout.flicker_and_slow_button,null));
-                mRotate = (RotateButton) findViewById(R.id.rotate);
-                mRotate.setOnTouchListener(this);
+                bottom_relative.removeAllViews();
+                bottom_relative.addView(View.inflate(this,R.layout.flicker_table,null));
+                top_image.setImageResource(R.drawable.top_bg_3);
                 break;
             case mState_rhythm:
                 mButton_rhythm.setBackgroundResource(R.drawable.mode_button_middle_pressed);
-                relative.removeAllViews();
-                relative.addView(View.inflate(this,R.layout.rhythm_table,null));
+                bottom_relative.removeAllViews();
+                bottom_relative.addView(View.inflate(this,R.layout.rhythm_table,null));
+                top_image.setImageResource(R.drawable.top_bg_4);
                 break;
             case mState_slow:
                 mButton_slow.setBackgroundResource(R.drawable.mode_button_right_pressed);
-                relative.removeAllViews();
-                relative.addView(View.inflate(this,R.layout.flicker_and_slow_button,null));
-                mRotate = (RotateButton) findViewById(R.id.rotate);
-                mRotate.setOnTouchListener(this);
+                bottom_relative.removeAllViews();
+                bottom_relative.addView(View.inflate(this,R.layout.flicker_table,null));
+                top_image.setImageResource(R.drawable.top_bg_5);
                 break;
         }
         mState = state;
     }
     private void recoverState(int nowState){
+    	bottom_relative.removeAllViews();
+    	bottom_relative.addView(View.inflate(this,R.layout.constant_detail,null));
+        top_image.setImageResource(R.drawable.top_bg_1);
         switch(nowState){
             case mState_constant:
                 mButton_constant.setBackgroundResource(R.drawable.mode_button_left);
