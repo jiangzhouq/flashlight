@@ -68,7 +68,7 @@
     </LinearLayout>
     <RelativeLayout
         android:id="@+id/container"
-        android:layout_width="200dp"
+        android:layout_width="400dp"
         android:layout_height="200dp"
         android:layout_below="@+id/buttons"
         android:layout_centerHorizontal="true"

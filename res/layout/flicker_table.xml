@@ -6,9 +6,11 @@
     android:background="@drawable/bg_layout">
     <TableRow>
         <RelativeLayout
+            android:id="@+id/flicker_grade_1"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/mode_button_rhythm">
+            android:background="@drawable/mode_button_rhythm"
+            android:clickable="true">
             <TextView 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -17,17 +19,61 @@
                 android:layout_centerInParent="true"
                 android:textColor="#8c8f91"/>
         </RelativeLayout>
-        <FrameLayout
+        <RelativeLayout
+            android:id="@+id/flicker_grade_2"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/mode_button_rhythm" />
-        <FrameLayout
+            android:background="@drawable/mode_button_rhythm"
+            android:clickable="true">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="2"
+                android:layout_centerInParent="true"
+                android:textColor="#8c8f91"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/flicker_grade_3"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/mode_button_rhythm" />
-        <FrameLayout
+            android:background="@drawable/mode_button_rhythm"
+            android:clickable="true">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="3"
+                android:layout_centerInParent="true"
+                android:textColor="#8c8f91"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/flicker_grade_4"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/mode_button_rhythm" />
+            android:background="@drawable/mode_button_rhythm"
+            android:clickable="true">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="4"
+                android:layout_centerInParent="true"
+                android:textColor="#8c8f91"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/flicker_grade_5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/mode_button_rhythm"
+            android:clickable="true">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="5"
+                android:layout_centerInParent="true"
+                android:textColor="#8c8f91"/>
+        </RelativeLayout>
     </TableRow>
 </TableLayout>
