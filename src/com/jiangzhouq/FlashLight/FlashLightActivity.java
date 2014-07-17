@@ -3,7 +3,7 @@ package com.jiangzhouq.FlashLight;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MotionEvent;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -88,26 +88,73 @@ public class FlashLightActivity extends Activity implements OnClickListener{
             }
         }
     };
+    private int defaultRate[] = new int[]{800,200,800,200,300,200,300,200,300,1000};
+    private int rate_num = 0;
+    
+    class RhythmRun implements Runnable{
+        
+        @Override
+        public void run() {
+            mSurface.setFlashlightSwitch(!mSurface.isFlashLightOn());
+            Log.d("qiqi", "postdelay:" + rate_num + " " + defaultRate[rate_num]);
+        	mHandler.postDelayed(rhythmRun, defaultRate[rate_num]);
+        	rate_num = rate_num + 1;
+        	if(rate_num >= defaultRate.length){
+        		rate_num = 0;
+        	}
+        }
+        public void setRate(int rate){
+            switch(rate){
+                case 1:
+                    defaultRate = new int[]{300,300,150,150,150};
+                    break;
+                case 2:
+                    defaultRate = new int[]{300,300,150,150,150};
+                    break;
+                case 3:
+                    defaultRate = new int[]{300,300,150,150,150};
+                    break;
+                case 4:
+                    defaultRate = new int[]{300,300,150,150,150};
+                    break;
+                case 5:
+                    defaultRate = new int[]{300,300,150,150,150};
+                    break;
+            }
+        }
+    };
+    RhythmRun rhythmRun = new RhythmRun() {
+    };
     FlickerRun flickerRun = new FlickerRun() {
 	};
-	private void startFlash(boolean flick){
-		if(flick){
-			mHandler.post(flickerRun);
-//			mImageButton.setImageResource(R.drawable.switch_on);
-		}else{
+	private void startFlash(int mode){
+		//0 for constant
+		//1 for flicker
+		//2 for rhythm 
+		//3 for slow
+		switch(mode){
+		case 0:
 			mHandler.removeCallbacks(flickerRun);
 			if(!mSurface.isFlashLightOn()){
 				mSurface.setFlashlightSwitch(true);
 //				mImageButton.setImageResource(R.drawable.switch_on);
 			}
+			break;
+		case 1:
+			mHandler.post(flickerRun);
+			break;
+		case 2:
+			mHandler.post(rhythmRun);
+			break;
+		case 3:
+			break;
 		}
 	}
 	
 	private void stopFlash(){
 		mHandler.removeCallbacks(flickerRun);
-		if(mSurface.isFlashLightOn()){
-			mSurface.setFlashlightSwitch(false);
-		}
+		mHandler.removeCallbacks(rhythmRun);
+		mSurface.setFlashlightSwitch(false);
 //		mImageButton.setImageResource(R.drawable.switch_off);
 	}
 	
@@ -144,56 +191,31 @@ public class FlashLightActivity extends Activity implements OnClickListener{
                 break;
             case R.id.flicker_grade_1:
             	flickerRun.setRate(1);
-            	for(int i : rhythm_buttons){
-            		RelativeLayout relative = (RelativeLayout) findViewById(i);
-            		relative.setBackgroundResource(R.drawable.mode_button_rhythm);
-            		TextView text = (TextView) relative.getChildAt(0);
-            		text.setTextColor(getResources().getColor(R.color.my_dark));
-            	}
+            	recoverFlickerButtons();
             	((RelativeLayout) findViewById(R.id.flicker_grade_1)).setBackgroundResource(R.drawable.mode_button_rhythm_pressed);
             	((TextView)((RelativeLayout) findViewById(R.id.flicker_grade_1)).getChildAt(0)).setTextColor(getResources().getColor(R.color.my_blue));
             	break;
             case R.id.flicker_grade_2:
             	flickerRun.setRate(2);
-            	for(int i : rhythm_buttons){
-            		RelativeLayout relative = (RelativeLayout) findViewById(i);
-            		relative.setBackgroundResource(R.drawable.mode_button_rhythm);
-            		TextView text = (TextView) relative.getChildAt(0);
-            		text.setTextColor(getResources().getColor(R.color.my_dark));
-            	}
+            	recoverFlickerButtons();
             	((RelativeLayout) findViewById(R.id.flicker_grade_2)).setBackgroundResource(R.drawable.mode_button_rhythm_pressed);
             	((TextView)((RelativeLayout) findViewById(R.id.flicker_grade_2)).getChildAt(0)).setTextColor(getResources().getColor(R.color.my_blue));
             	break;
             case R.id.flicker_grade_3:
             	flickerRun.setRate(3);
-            	for(int i : rhythm_buttons){
-            		RelativeLayout relative = (RelativeLayout) findViewById(i);
-            		relative.setBackgroundResource(R.drawable.mode_button_rhythm);
-            		TextView text = (TextView) relative.getChildAt(0);
-            		text.setTextColor(getResources().getColor(R.color.my_dark));
-            	}
+            	recoverFlickerButtons();
             	((RelativeLayout) findViewById(R.id.flicker_grade_3)).setBackgroundResource(R.drawable.mode_button_rhythm_pressed);
             	((TextView)((RelativeLayout) findViewById(R.id.flicker_grade_3)).getChildAt(0)).setTextColor(getResources().getColor(R.color.my_blue));
             	break;
             case R.id.flicker_grade_4:
             	flickerRun.setRate(4);
-            	for(int i : rhythm_buttons){
-            		RelativeLayout relative = (RelativeLayout) findViewById(i);
-            		relative.setBackgroundResource(R.drawable.mode_button_rhythm);
-            		TextView text = (TextView) relative.getChildAt(0);
-            		text.setTextColor(getResources().getColor(R.color.my_dark));
-            	}
+            	recoverFlickerButtons();
             	((RelativeLayout) findViewById(R.id.flicker_grade_4)).setBackgroundResource(R.drawable.mode_button_rhythm_pressed);
             	((TextView)((RelativeLayout) findViewById(R.id.flicker_grade_4)).getChildAt(0)).setTextColor(getResources().getColor(R.color.my_blue));
             	break;
             case R.id.flicker_grade_5:
             	flickerRun.setRate(5);
-            	for(int i : rhythm_buttons){
-            		RelativeLayout relative = (RelativeLayout) findViewById(i);
-            		relative.setBackgroundResource(R.drawable.mode_button_rhythm);
-            		TextView text = (TextView) relative.getChildAt(0);
-            		text.setTextColor(getResources().getColor(R.color.my_dark));
-            	}
+            	recoverFlickerButtons();
             	((RelativeLayout) findViewById(R.id.flicker_grade_5)).setBackgroundResource(R.drawable.mode_button_rhythm_pressed);
             	((TextView)((RelativeLayout) findViewById(R.id.flicker_grade_5)).getChildAt(0)).setTextColor(getResources().getColor(R.color.my_blue));
             	break;
@@ -206,13 +228,20 @@ public class FlashLightActivity extends Activity implements OnClickListener{
 //			}
 		}
 	}
-
+	private void recoverFlickerButtons(){
+		for(int i : rhythm_buttons){
+    		RelativeLayout relative = (RelativeLayout) findViewById(i);
+    		relative.setBackgroundResource(R.drawable.mode_button_rhythm);
+    		TextView text = (TextView) relative.getChildAt(0);
+    		text.setTextColor(getResources().getColor(R.color.my_dark));
+    	}
+	}
     private void changeState(int state){
         recoverState();
         
         switch(state){
             case mState_constant:
-                startFlash(false);
+                startFlash(0);
                 mButton_constant.setBackgroundResource(R.drawable.mode_button_left_pressed);
                 bottom_relative.removeAllViews();
                 View.inflate(this,R.layout.constant_detail,bottom_relative);
@@ -221,7 +250,7 @@ public class FlashLightActivity extends Activity implements OnClickListener{
                 mConstantsButton.setImageResource(R.drawable.bt_bg_2);
                 break;
             case mState_flicker:
-                startFlash(true);
+                startFlash(1);
                 mButton_flicker.setBackgroundResource(R.drawable.mode_button_middle_pressed);
                 bottom_relative.removeAllViews();
                 View.inflate(this,R.layout.flicker_table,bottom_relative);
@@ -231,6 +260,7 @@ public class FlashLightActivity extends Activity implements OnClickListener{
                 setFlickerListener();
                 break;
             case mState_rhythm:
+            	startFlash(2);
                 mButton_rhythm.setBackgroundResource(R.drawable.mode_button_middle_pressed);
                 bottom_relative.removeAllViews();
                 View.inflate(this,R.layout.rhythm_table,bottom_relative);

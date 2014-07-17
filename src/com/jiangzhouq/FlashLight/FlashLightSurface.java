@@ -84,6 +84,7 @@ public class FlashLightSurface extends SurfaceView implements SurfaceHolder.Call
         mCameraDevices.setParameters(mParameters);  
     }  
     
+    
     public boolean isFlashLightOn(){
     	return CAMERA_ON;
     }
