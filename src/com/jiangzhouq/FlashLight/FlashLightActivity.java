@@ -150,16 +150,16 @@ public class FlashLightActivity extends Activity implements OnClickListener{
                     break;
                 //music3
                 case 9:
-                    defaultRate = new int[]{100,200,100,100,100,100,100,200,100,200,100,100,100,100,100,100,100,100,100,200};
+                    defaultRate = new int[]{100,100,100,600,100,100,100,600,100,400,100,400,100,600};
                     break;
                 case 10:
-                    defaultRate = new int[]{800,200,800,200,300,200,300,200,800,200};
+                    defaultRate = new int[]{100,100,100,500,100,100,100,500,100,300,100,300,100,500};
                     break;
                 case 11:
-                    defaultRate = new int[]{600,150,600,150,300,150,300,150,600,150};
+                    defaultRate = new int[]{100,100,100,300,100,100,100,300,100,300,100,300,100,300};
                     break;
                 case 12:
-                    defaultRate = new int[]{400,150,400,150,200,150,200,150,400,150};
+                    defaultRate = new int[]{100,100,100,200,100,100,100,200,100,200,100,200,100,200};
                     break;
             }
         }
@@ -196,6 +196,7 @@ public class FlashLightActivity extends Activity implements OnClickListener{
 		mHandler.removeCallbacks(flickerRun);
 		mHandler.removeCallbacks(rhythmRun);
 		mSurface.setFlashlightSwitch(false);
+		rate_num = 0;
 //		mImageButton.setImageResource(R.drawable.switch_off);
 	}
 	
